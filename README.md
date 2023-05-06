@@ -31,6 +31,12 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 It's a convention for Tauri apps to place all core-related files into the `src-tauri` folder. Inside you will also see the `src` sub-folder, and this is where all the Rust code lives, with `src/main.rs` being the entry point to your Rust program and the place where we bootstrap into Tauri.
 
+#### Commands
+
+Tauri lets you enhance your frontend with native capabilities. We call these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
+
+This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS app inside `app/page.tsx`.
+
 ## Learn More
 
 To learn more about Rust, take a look at:
