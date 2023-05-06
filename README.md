@@ -15,12 +15,7 @@ Note that this project deviates from the current [Tauri guide](https://tauri.app
 
 ## Development
 
-To run the program in development, use the following command:
-```bash
-$ cargo tauri dev
-```
-
-or
+To run the program in development, use the following command from the project root folder:
 
 ```bash
 $ npm run tauri dev
