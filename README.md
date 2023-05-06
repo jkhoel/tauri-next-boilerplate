@@ -9,9 +9,11 @@ Note that this project deviates from the current [Tauri guide](https://tauri.app
 
 ## TODO
 
-1. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
-2. Splash-screen
-3. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons) 
+1. Better example for Hello-World command. Should write the result to the page instead
+2. Check if we really need to have the `"use client"` flag with new Next 13 way of doing SSR
+3. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
+4. Splash-screen
+5. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons) 
 
 ## Development
 
