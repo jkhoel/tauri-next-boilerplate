@@ -11,8 +11,20 @@ Note that this project deviates from the current [Tauri guide](https://tauri.app
 
 1. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
 2. Splash-screen
+3. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons) 
 
 ## Development
+
+To run the program in development, use the following command:
+```bash
+$ cargo tauri dev
+```
+
+or
+
+```bash
+$ npm run tauri dev
+```
 
 ### NextJS
 
