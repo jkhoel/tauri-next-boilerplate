@@ -7,11 +7,37 @@ Note that this project deviates from the current [Tauri guide](https://tauri.app
 1. As of Next 13 we can now use the `app` folder as recommended by the Next team.
 2. Adding `next export` to `package.json` is no longer required, and the [recommended way is to add `output: export` to `next.config.js](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) instead.
 
-## Getting Started
+## TODO
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Better example for Hello-World command. Should write the result to the page instead
+2. Check if we really need to have the `"use client"` flag with new Next 13 way of doing SSR
+3. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
+4. Splash-screen
+5. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons) 
+
+## Development
+
+To run the program in development, use the following command from the project root folder:
+
+```bash
+$ npm run tauri dev
+```
+
+### NextJS
+
+This project uses the `app` folder and router introduced in Next 13. To start editing the Next pages, start by modifying `app/page.tsx`.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+### Tauri
+
+It's a convention for Tauri apps to place all core-related files into the `src-tauri` folder. Inside you will also see the `src` sub-folder, and this is where all the Rust code lives, with `src/main.rs` being the entry point to your Rust program and the place where we bootstrap into Tauri.
+
+#### Commands
+
+Tauri lets you enhance your frontend with native capabilities. We call these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
+
+This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS app inside `app/page.tsx`.
 
 ## Learn More
 
