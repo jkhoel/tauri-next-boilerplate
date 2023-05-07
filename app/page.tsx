@@ -1,17 +1,22 @@
 "use client";
-import { invoke } from "@tauri-apps/api";
+import { useEffect, useState } from "react";
+import Greeter from "@api/greeter";
 import styles from "./page.module.css";
-import { useEffect } from "react";
+import { GreetResult } from "@/api/types";
 
 export default function Home() {
+  const [greeting, setGreeting] = useState<GreetResult>({ message: "" });
+
   useEffect(() => {
-    invoke("greet", { name: "World" }).then(console.log).catch(console.error);
+    Greeter({ name: "World" }).then((greeting) =>
+      setGreeting(greeting as GreetResult)
+    );
   }, []);
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>Hello!</p>
+        <p>{greeting.message}</p>
       </div>
     </main>
   );
