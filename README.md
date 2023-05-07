@@ -13,18 +13,17 @@ current [Tauri guide](https://tauri.app/v1/guides/getting-started/setup/next-js)
 
 ## TODO
 
-1. Better example for Hello-World command. Should write the result to the page instead
-2. Check if we really need to have the `"use client"` flag with new Next 13 way of doing SSR
-3. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
-4. Splash-screen
-5. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons)
+1. Check if we really need to have the `"use client"` flag with new Next 13 way of doing SSR
+2. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
+3. Splash-screen
+4. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons)
 
 ## Development
 
 To run the program in development, use the following command from the project root folder:
 
 ```bash
-$ npm run tauri dev
+npm run tauri dev
 ```
 
 ### Shared Types and Commands
@@ -36,14 +35,14 @@ frontend JavaScript. This enables you to handle heavy processing or calls to the
 This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS
 app inside `app/page.tsx` via the wrapper function inside `api/greeter.ts`. If we call the `invoke()` function from the
 Tauri SDK directly inside our pages, then we will not get code-completion on the available Commands and their associated
-types. Putting the invoke call inside a wrapper-function solves this.
+types. Putting the invoke-call inside a wrapper-function solves this.
 
 It would also be nice to be able to get types for `Enums` and `Structs` we might define inside our Rust code available for our type-script code as well. To
-do this, we have [Typeshare](https://crates.io/crates/typeshare) added as a create to the project, so types can be generated from
+do this, we have [Typeshare](https://crates.io/crates/typeshare) added as a crate to the project, so types can be generated from
 the Rust code by running:
 
 ```bash
-$ npm run typeshare
+npm run typeshare
 ```
 
 This will update the `types.ts` file inside the `./api/` folder, and expose the exported types via the `@types` path.
