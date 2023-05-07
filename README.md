@@ -23,6 +23,54 @@ To run the program in development, use the following command from the project ro
 $ npm run tauri dev
 ```
 
+### Shared Types and Commands
+
+Tauri lets you enhance your frontend with native capabilities. We call these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
+
+This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS app inside `app/page.tsx`.
+
+However, since we are electing to use TypeScript - it would be nice to have our types generated from the Rust code. To do this, we have [Typeshare](https://crates.io/crates/typeshare) added to the project, so types can be generated from the Rust code by running:
+
+```bash
+$ npm run typeshare
+```
+
+This will update the `types.ts` file inside the `./api/` folder, and expose the exported types via the `@api` path.
+
+Include the #[typeshare] attribute with any struct or enum you define to generate type definitions:
+
+```rust
+// Rust type definitions
+
+#[typeshare]
+struct MyStruct {
+    my_name: String,
+    my_age: u32,
+}
+
+#[typeshare]
+#[serde(tag = "type", content = "content")]
+enum MyEnum {
+    MyVariant(bool),
+    MyOtherVariant,
+    MyNumber(u32),
+}
+```
+
+```typescript
+// Generated Typescript definitions
+
+export interface MyStruct {
+    my_name: string;
+    my_age: number;
+}
+
+export type MyEnum = 
+    | { type: "MyVariant", content: boolean }
+    | { type: "MyOtherVariant", content: undefined }
+    | { type: "MyNumber", content: number };
+```
+
 ### NextJS
 
 This project uses the `app` folder and router introduced in Next 13. To start editing the Next pages, start by modifying `app/page.tsx`.
@@ -32,12 +80,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 ### Tauri
 
 It's a convention for Tauri apps to place all core-related files into the `src-tauri` folder. Inside you will also see the `src` sub-folder, and this is where all the Rust code lives, with `src/main.rs` being the entry point to your Rust program and the place where we bootstrap into Tauri.
-
-#### Commands
-
-Tauri lets you enhance your frontend with native capabilities. We call these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
-
-This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS app inside `app/page.tsx`.
 
 ## Learn More
 
