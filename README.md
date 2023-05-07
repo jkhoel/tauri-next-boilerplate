@@ -1,7 +1,6 @@
 # Tauri + NextJS
 
-This is a [Tauri App](https://tauri.app) with [NextJS](https://nextjs.org/). Built on versions v1.3 for Tauri and 13 for
-NextJS.
+A boilerplate project for a [Tauri](https://tauri.app) app with a [NextJS 13](https://nextjs.org/) front-end.
 
 Note that this project deviates from the
 current [Tauri guide](https://tauri.app/v1/guides/getting-started/setup/next-js) in a few places:
