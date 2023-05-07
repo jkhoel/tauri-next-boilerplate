@@ -13,7 +13,7 @@ enum GreeterCommand {
  * Example wrapper function that wraps the default invoke() function, providing proper typing
  */
 async function greeter(params: GreetArgs): Promise<GreetResult> {
-  return await invoke(GreeterCommand.Greet, { name: "hello" }).then((res) => res as GreetResult).catch(err => {
+  return await invoke(GreeterCommand.Greet, { ...params }).then((res) => res as GreetResult).catch(err => {
     console.error(err);
     return { message: "error" };
   });

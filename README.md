@@ -16,6 +16,7 @@ current [Tauri guide](https://tauri.app/v1/guides/getting-started/setup/next-js)
 2. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
 3. Splash-screen
 4. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons)
+5. See if we can make the GreetingArg struct work with `&str` argument for `name`
 
 ## Development
 

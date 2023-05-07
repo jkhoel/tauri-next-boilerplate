@@ -11,10 +11,14 @@ fn main() {
         .expect("error while running tauri application");
 }
 
+/**
+ * Note that this type is not really used for the parameters below. But we
+ * define it none the less so that we can generate typescript types for it.
+ */
 #[typeshare]
 #[derive(Serialize, Deserialize)]
-struct GreetArgs<'a> {
-    name: &'a str,
+struct GreetArgs {
+    name: String,
 }
 
 #[typeshare]
@@ -24,8 +28,8 @@ struct GreetResult {
 }
 
 #[tauri::command]
-fn greet(args: GreetArgs) -> GreetResult {
+fn greet(name: &str) -> GreetResult {
     GreetResult {
-        message: format!("Hello, {name}!", name = args.name),
+        message: format!("Hello, {name}!"),
     }
 }
