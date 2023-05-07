@@ -1,11 +1,15 @@
 # Tauri + NextJS
 
-This is a [Tauri App](https://tauri.app) with [NextJS](https://nextjs.org/). Built on versions v1.3 for Tauri and 13 for NextJS.
+This is a [Tauri App](https://tauri.app) with [NextJS](https://nextjs.org/). Built on versions v1.3 for Tauri and 13 for
+NextJS.
 
-Note that this project deviates from the current [Tauri guide](https://tauri.app/v1/guides/getting-started/setup/next-js) in a few places:
+Note that this project deviates from the
+current [Tauri guide](https://tauri.app/v1/guides/getting-started/setup/next-js) in a few places:
 
 1. As of Next 13 we can now use the `app` folder as recommended by the Next team.
-2. Adding `next export` to `package.json` is no longer required, and the [recommended way is to add `output: export` to `next.config.js](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) instead.
+2. Adding `next export` to `package.json` is no longer required, and
+   the [recommended way is to add `output: export` to `next.config.js](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)
+   instead.
 
 ## TODO
 
@@ -13,7 +17,7 @@ Note that this project deviates from the current [Tauri guide](https://tauri.app
 2. Check if we really need to have the `"use client"` flag with new Next 13 way of doing SSR
 3. Add [stitches.dev](https://stitches.dev/) for styling with CSS-in-JS
 4. Splash-screen
-5. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons) 
+5. Some [cooler Icons?](https://tauri.app/v1/guides/features/icons)
 
 ## Development
 
@@ -25,17 +29,24 @@ $ npm run tauri dev
 
 ### Shared Types and Commands
 
-Tauri lets you enhance your frontend with native capabilities. We call these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
+Tauri lets you enhance your frontend with native capabilities. We call
+these [Commands](https://tauri.app/v1/guides/features/command), essentially Rust functions that you can call from your
+frontend JavaScript. This enables you to handle heavy processing or calls to the OS in much more performant Rust code.
 
-This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS app inside `app/page.tsx`.
+This boilerplate project has one such command found in `src/main.rs`, and we are calling this command from our NextJS
+app inside `app/page.tsx` via the wrapper function inside `api/greeter.ts`. If we call the `invoke()` function from the
+Tauri SDK directly inside our pages, then we will not get code-completion on the available Commands and their associated
+types. Putting the invoke call inside a wrapper-function solves this.
 
-However, since we are electing to use TypeScript - it would be nice to have our types generated from the Rust code. To do this, we have [Typeshare](https://crates.io/crates/typeshare) added to the project, so types can be generated from the Rust code by running:
+It would also be nice to be able to get types for `Enums` and `Structs` we might define inside our Rust code available for our type-script code as well. To
+do this, we have [Typeshare](https://crates.io/crates/typeshare) added as a create to the project, so types can be generated from
+the Rust code by running:
 
 ```bash
 $ npm run typeshare
 ```
 
-This will update the `types.ts` file inside the `./api/` folder, and expose the exported types via the `@api` path.
+This will update the `types.ts` file inside the `./api/` folder, and expose the exported types via the `@types` path.
 
 Include the #[typeshare] attribute with any struct or enum you define to generate type definitions:
 
@@ -61,25 +72,29 @@ enum MyEnum {
 // Generated Typescript definitions
 
 export interface MyStruct {
-    my_name: string;
-    my_age: number;
+  my_name: string;
+  my_age: number;
 }
 
-export type MyEnum = 
-    | { type: "MyVariant", content: boolean }
-    | { type: "MyOtherVariant", content: undefined }
-    | { type: "MyNumber", content: number };
+export type MyEnum =
+  | { type: "MyVariant", content: boolean }
+  | { type: "MyOtherVariant", content: undefined }
+  | { type: "MyNumber", content: number };
 ```
 
 ### NextJS
 
-This project uses the `app` folder and router introduced in Next 13. To start editing the Next pages, start by modifying `app/page.tsx`.
+This project uses the `app` folder and router introduced in Next 13. To start editing the Next pages, start by
+modifying `app/page.tsx`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and
+load Inter, a custom Google Font.
 
 ### Tauri
 
-It's a convention for Tauri apps to place all core-related files into the `src-tauri` folder. Inside you will also see the `src` sub-folder, and this is where all the Rust code lives, with `src/main.rs` being the entry point to your Rust program and the place where we bootstrap into Tauri.
+It's a convention for Tauri apps to place all core-related files into the `src-tauri` folder. Inside you will also see
+the `src` sub-folder, and this is where all the Rust code lives, with `src/main.rs` being the entry point to your Rust
+program and the place where we bootstrap into Tauri.
 
 ## Learn More
 
